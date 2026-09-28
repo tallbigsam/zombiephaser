@@ -1,0 +1,671 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "tpmo1-delivery-metrics",
+    "title": "Delivery Metrics",
+    "description": "Work item counts, sprint velocity, lead/cycle time -- Phase 1 use case.",
+    "tags": [
+      "tpmo1",
+      "delivery-metrics"
+    ],
+    "timezone": "browser",
+    "schemaVersion": 39,
+    "time": {
+      "from": "now-90d",
+      "to": "now+30d"
+    },
+    "panels": [
+      {
+        "id": 2,
+        "type": "piechart",
+        "title": "Work items by status",
+        "description": "",
+        "gridPos": {
+          "h": 8,
+          "w": 8,
+          "x": 0,
+          "y": 0
+        },
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND issuetype in (Story, Bug)",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "status",
+                "items": "",
+                "label": "Status",
+                "system": "status",
+                "text": "Status",
+                "type": "string",
+                "value": "status"
+              }
+            ]
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "status"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*statusCategory\\.key:new.*",
+                        "result": {
+                          "text": "To Do",
+                          "color": "blue-gray",
+                          "index": 0
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*statusCategory\\.key:indeterminate.*",
+                        "result": {
+                          "text": "In Progress",
+                          "color": "yellow",
+                          "index": 1
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*statusCategory\\.key:done.*",
+                        "result": {
+                          "text": "Done",
+                          "color": "green",
+                          "index": 2
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "options": {
+          "reduceOptions": {
+            "values": true,
+            "calcs": [],
+            "fields": ""
+          }
+        },
+        "transformations": [
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "status": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "key": {
+                  "aggregations": [
+                    "count"
+                  ],
+                  "operation": "aggregate"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "type": "piechart",
+        "title": "Defects by status",
+        "description": "",
+        "gridPos": {
+          "h": 8,
+          "w": 8,
+          "x": 8,
+          "y": 0
+        },
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND issuetype in (Story, Bug) AND issuetype = Bug",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "status",
+                "items": "",
+                "label": "Status",
+                "system": "status",
+                "text": "Status",
+                "type": "string",
+                "value": "status"
+              }
+            ]
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "status"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*statusCategory\\.key:new.*",
+                        "result": {
+                          "text": "To Do",
+                          "color": "blue-gray",
+                          "index": 0
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*statusCategory\\.key:indeterminate.*",
+                        "result": {
+                          "text": "In Progress",
+                          "color": "yellow",
+                          "index": 1
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*statusCategory\\.key:done.*",
+                        "result": {
+                          "text": "Done",
+                          "color": "green",
+                          "index": 2
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "options": {
+          "reduceOptions": {
+            "values": true,
+            "calcs": [],
+            "fields": ""
+          }
+        },
+        "transformations": [
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "status": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "key": {
+                  "aggregations": [
+                    "count"
+                  ],
+                  "operation": "aggregate"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "type": "stat",
+        "title": "Average lead/cycle time (days, done items)",
+        "description": "Uses Created and Status Category Changed (both clean date fields) to compute days in flight. Caveat: this seed dataset was created moments ago, so every issue's Created/Status-Category-Changed are only seconds apart -- the mechanism is real, but the number will read ~0 until this runs against issues with real history.",
+        "gridPos": {
+          "h": 8,
+          "w": 8,
+          "x": 16,
+          "y": 0
+        },
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND issuetype in (Story, Bug) AND status = Done",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "created",
+                "items": "",
+                "label": "Created",
+                "system": "created",
+                "text": "Created",
+                "type": "date",
+                "value": "created"
+              },
+              {
+                "custom": "",
+                "id": "statuscategorychangedate",
+                "items": "",
+                "label": "Status Category Changed",
+                "system": "statuscategorychangedate",
+                "text": "Status Category Changed",
+                "type": "date",
+                "value": "statuscategorychangedate"
+              }
+            ]
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "options": {},
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "mode": "reduceRow",
+              "reduce": {
+                "reducer": "diff",
+                "include": [
+                  "created",
+                  "statuscategorychangedate"
+                ]
+              },
+              "alias": "Difference"
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "mode": "binary",
+              "alias": "Days",
+              "binary": {
+                "left": "Difference",
+                "operator": "/",
+                "right": "86400000"
+              }
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "names": [
+                  "Days"
+                ]
+              }
+            }
+          },
+          {
+            "id": "reduce",
+            "options": {
+              "reducers": [
+                "mean"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "type": "bargauge",
+        "title": "Sprint velocity: completed vs. estimated points",
+        "description": "4 JQL-scoped queries (sprint x done-or-not), each reduced to a single sum of Story point estimate -- avoids ever needing to read the messy native Sprint field.",
+        "gridPos": {
+          "h": 6,
+          "w": 24,
+          "x": 0,
+          "y": 8
+        },
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND sprint in closedSprints()",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10016",
+                "items": "",
+                "label": "Story point estimate",
+                "system": "",
+                "text": "Story point estimate",
+                "type": "number",
+                "value": "customfield_10016"
+              }
+            ]
+          },
+          {
+            "refId": "B",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND sprint in closedSprints() AND status = Done",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10016",
+                "items": "",
+                "label": "Story point estimate",
+                "system": "",
+                "text": "Story point estimate",
+                "type": "number",
+                "value": "customfield_10016"
+              }
+            ]
+          },
+          {
+            "refId": "C",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND sprint in openSprints()",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10016",
+                "items": "",
+                "label": "Story point estimate",
+                "system": "",
+                "text": "Story point estimate",
+                "type": "number",
+                "value": "customfield_10016"
+              }
+            ]
+          },
+          {
+            "refId": "D",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND sprint in openSprints() AND status = Done",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10016",
+                "items": "",
+                "label": "Story point estimate",
+                "system": "",
+                "text": "Story point estimate",
+                "type": "number",
+                "value": "customfield_10016"
+              }
+            ]
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byFrameRefID",
+                "options": "A"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Closed sprint - estimated"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byFrameRefID",
+                "options": "B"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Closed sprint - completed"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byFrameRefID",
+                "options": "C"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Active sprint - estimated"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byFrameRefID",
+                "options": "D"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Active sprint - completed so far"
+                }
+              ]
+            }
+          ]
+        },
+        "options": {},
+        "transformations": [
+          {
+            "id": "reduce",
+            "options": {
+              "reducers": [
+                "sum"
+              ],
+              "fields": {
+                "customfield_10016": true
+              }
+            },
+            "filter": {
+              "id": "byRefId",
+              "options": "A"
+            }
+          },
+          {
+            "id": "reduce",
+            "options": {
+              "reducers": [
+                "sum"
+              ],
+              "fields": {
+                "customfield_10016": true
+              }
+            },
+            "filter": {
+              "id": "byRefId",
+              "options": "B"
+            }
+          },
+          {
+            "id": "reduce",
+            "options": {
+              "reducers": [
+                "sum"
+              ],
+              "fields": {
+                "customfield_10016": true
+              }
+            },
+            "filter": {
+              "id": "byRefId",
+              "options": "C"
+            }
+          },
+          {
+            "id": "reduce",
+            "options": {
+              "reducers": [
+                "sum"
+              ],
+              "fields": {
+                "customfield_10016": true
+              }
+            },
+            "filter": {
+              "id": "byRefId",
+              "options": "D"
+            }
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "type": "text",
+        "title": "About this dashboard",
+        "gridPos": {
+          "h": 3,
+          "w": 24,
+          "x": 0,
+          "y": 14
+        },
+        "options": {
+          "mode": "markdown",
+          "content": "**Note:** all 40 sprint issues in this demo dataset were created moments ago as part of a seed script, so system `created`/`resolutiondate` timestamps are effectively identical across every issue. A true trend-analysis-over-time panel (issues created/resolved per week) and the lead/cycle time figure above have nothing meaningful to show yet with this seed data -- that's a data-recency limitation of the demo dataset, not a Jira/Grafana limitation, and mirrors the source doc's own point that reporting quality depends on real data maturity."
+        }
+      }
+    ]
+  },
+  "folderUid": "cfzngcse0ikg0c",
+  "overwrite": true
+}

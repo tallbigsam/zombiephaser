@@ -1,0 +1,381 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "tpmo1-roadmap",
+    "title": "Transformation Roadmap (Partial)",
+    "description": "Deliberately minimal -- matches the source doc's 'Partially, dependent on data availability' verdict.",
+    "tags": [
+      "tpmo1",
+      "roadmap"
+    ],
+    "timezone": "browser",
+    "schemaVersion": 39,
+    "time": {
+      "from": "now-90d",
+      "to": "now+30d"
+    },
+    "panels": [
+      {
+        "id": 2,
+        "type": "text",
+        "title": "About this dashboard",
+        "gridPos": {
+          "h": 3,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "options": {
+          "mode": "markdown",
+          "content": "**Partial view**, consistent with the source doc's own assessment: a full roadmap needs consistently-captured milestones and dependency sequencing across the whole portfolio. This is a sortable list, not a Gantt chart -- Grafana has no native Gantt panel, and forcing one would misrepresent how ready this use case actually is."
+        }
+      },
+      {
+        "id": 3,
+        "type": "table",
+        "title": "Initiative timeline (sorted by start date)",
+        "description": "",
+        "gridPos": {
+          "h": 10,
+          "w": 24,
+          "x": 0,
+          "y": 3
+        },
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND issuetype = Epic ORDER BY \"Start Date\" ASC",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "summary",
+                "items": "",
+                "label": "Summary",
+                "system": "summary",
+                "text": "Summary",
+                "type": "string",
+                "value": "summary"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10296",
+                "items": "",
+                "label": "Pillar",
+                "system": "",
+                "text": "Pillar",
+                "type": "string",
+                "value": "customfield_10296"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10299",
+                "items": "",
+                "label": "Delivery Phase",
+                "system": "",
+                "text": "Delivery Phase",
+                "type": "string",
+                "value": "customfield_10299"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10300",
+                "items": "",
+                "label": "Start Date",
+                "system": "",
+                "text": "Start Date",
+                "type": "date",
+                "value": "customfield_10300"
+              },
+              {
+                "custom": "",
+                "id": "duedate",
+                "items": "",
+                "label": "Due Date",
+                "system": "duedate",
+                "text": "Due Date",
+                "type": "date",
+                "value": "duedate"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10297",
+                "items": "",
+                "label": "RAG Status",
+                "system": "",
+                "text": "RAG Status",
+                "type": "string",
+                "value": "customfield_10297"
+              }
+            ]
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10296"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Payments Modernisation\\].*",
+                        "result": {
+                          "text": "Payments Modernisation",
+                          "color": "blue",
+                          "index": 0
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Core Banking Migration\\].*",
+                        "result": {
+                          "text": "Core Banking Migration",
+                          "color": "purple",
+                          "index": 1
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Digital Channels\\].*",
+                        "result": {
+                          "text": "Digital Channels",
+                          "color": "light-blue",
+                          "index": 2
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Risk & Compliance\\].*",
+                        "result": {
+                          "text": "Risk & Compliance",
+                          "color": "dark-orange",
+                          "index": 3
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10299"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Discovery\\].*",
+                        "result": {
+                          "text": "Discovery",
+                          "color": "text",
+                          "index": 0
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Build\\].*",
+                        "result": {
+                          "text": "Build",
+                          "color": "blue",
+                          "index": 1
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Test\\].*",
+                        "result": {
+                          "text": "Test",
+                          "color": "orange",
+                          "index": 2
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Deploy\\].*",
+                        "result": {
+                          "text": "Deploy",
+                          "color": "purple",
+                          "index": 3
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Live\\].*",
+                        "result": {
+                          "text": "Live",
+                          "color": "green",
+                          "index": 4
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10297"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Red\\].*",
+                        "result": {
+                          "text": "Red",
+                          "color": "red",
+                          "index": 0
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Amber\\].*",
+                        "result": {
+                          "text": "Amber",
+                          "color": "orange",
+                          "index": 1
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Green\\].*",
+                        "result": {
+                          "text": "Green",
+                          "color": "green",
+                          "index": 2
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "options": {}
+      },
+      {
+        "id": 4,
+        "type": "table",
+        "title": "Upcoming milestones",
+        "description": "",
+        "gridPos": {
+          "h": 6,
+          "w": 24,
+          "x": 0,
+          "y": 13
+        },
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND issuetype = Task ORDER BY duedate ASC",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "summary",
+                "items": "",
+                "label": "Summary",
+                "system": "summary",
+                "text": "Summary",
+                "type": "string",
+                "value": "summary"
+              },
+              {
+                "custom": "",
+                "id": "duedate",
+                "items": "",
+                "label": "Due Date",
+                "system": "duedate",
+                "text": "Due Date",
+                "type": "date",
+                "value": "duedate"
+              }
+            ]
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "options": {}
+      }
+    ]
+  },
+  "folderUid": "cfzngcse0ikg0c",
+  "overwrite": true
+}

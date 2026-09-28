@@ -1,0 +1,606 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "tpmo1-dependency",
+    "title": "Cross-Pillar Dependency",
+    "description": "Dependency tracking via the plain-text Blocked By field -- Phase 1 use case.",
+    "tags": [
+      "tpmo1",
+      "dependency"
+    ],
+    "timezone": "browser",
+    "schemaVersion": 39,
+    "time": {
+      "from": "now-90d",
+      "to": "now+30d"
+    },
+    "panels": [
+      {
+        "id": 3,
+        "type": "text",
+        "title": "\ud83d\udca1 Try this: generate a live dependency graph with Grafana Assistant",
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "options": {
+          "mode": "markdown",
+          "content": "Grafana can dynamically infer the \"blocked by\" relationships straight from the **Dependencies by pillar** table below and render them as a live Graphviz graph -- no hand-built DOT string required. Rather than ship a pre-built graph here, generate it yourself with Grafana Assistant using this exact prompt:\n\n```\nUsing the Key, Blocked By, and Summary columns from the 'Dependencies by pillar' table on this dashboard, build me a Graphviz panel that shows how our Jira backlog epics depend on each other. Each epic should be its own node, labeled with its key and summary, with an arrow pointing from the blocker to the epic it's blocking. Colour the nodes by RAG status \u2014 red for at-risk, amber for caution, green for on-track \u2014 and use grey for anything without a RAG status, like milestones. Lay it out left-to-right so the chains are easy to follow, and add it to the top of this dashboard.\n```"
+        }
+      },
+      {
+        "id": 4,
+        "type": "table",
+        "title": "Dependencies by pillar",
+        "description": "",
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 8
+        },
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND issuetype = Epic AND \"Blocked By\" is not EMPTY",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "summary",
+                "items": "",
+                "label": "Summary",
+                "system": "summary",
+                "text": "Summary",
+                "type": "string",
+                "value": "summary"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10296",
+                "items": "",
+                "label": "Pillar",
+                "system": "",
+                "text": "Pillar",
+                "type": "string",
+                "value": "customfield_10296"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10301",
+                "items": "",
+                "label": "Blocked By",
+                "system": "",
+                "text": "Blocked By",
+                "type": "string",
+                "value": "customfield_10301"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10297",
+                "items": "",
+                "label": "RAG Status",
+                "system": "",
+                "text": "RAG Status",
+                "type": "string",
+                "value": "customfield_10297"
+              }
+            ]
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10296"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Payments Modernisation\\].*",
+                        "result": {
+                          "text": "Payments Modernisation",
+                          "color": "blue",
+                          "index": 0
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Core Banking Migration\\].*",
+                        "result": {
+                          "text": "Core Banking Migration",
+                          "color": "purple",
+                          "index": 1
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Digital Channels\\].*",
+                        "result": {
+                          "text": "Digital Channels",
+                          "color": "light-blue",
+                          "index": 2
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Risk & Compliance\\].*",
+                        "result": {
+                          "text": "Risk & Compliance",
+                          "color": "dark-orange",
+                          "index": 3
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10297"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Red\\].*",
+                        "result": {
+                          "text": "Red",
+                          "color": "red",
+                          "index": 0
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Amber\\].*",
+                        "result": {
+                          "text": "Amber",
+                          "color": "orange",
+                          "index": 1
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Green\\].*",
+                        "result": {
+                          "text": "Green",
+                          "color": "green",
+                          "index": 2
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "options": {}
+      },
+      {
+        "id": 2,
+        "type": "table",
+        "title": "Currently active blockers (not done, overdue)",
+        "description": "Cross-reference against the 'Blocked By' column above: any row here whose Key matches a 'Blocked By' value up there is a dependency with a genuinely active, overdue blocker.",
+        "gridPos": {
+          "h": 6,
+          "w": 24,
+          "x": 0,
+          "y": 16
+        },
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND issuetype = Epic AND status != Done AND duedate < now() ORDER BY duedate ASC",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "summary",
+                "items": "",
+                "label": "Summary",
+                "system": "summary",
+                "text": "Summary",
+                "type": "string",
+                "value": "summary"
+              },
+              {
+                "custom": "",
+                "id": "duedate",
+                "items": "",
+                "label": "Due Date",
+                "system": "duedate",
+                "text": "Due Date",
+                "type": "date",
+                "value": "duedate"
+              }
+            ]
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "options": {}
+      },
+      {
+        "id": 5,
+        "type": "table",
+        "title": "Amber/Red dependencies",
+        "description": "",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 24
+        },
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND issuetype = Epic AND \"Blocked By\" is not EMPTY AND (\"RAG Status\" = Amber OR \"RAG Status\" = Red)",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "summary",
+                "items": "",
+                "label": "Summary",
+                "system": "summary",
+                "text": "Summary",
+                "type": "string",
+                "value": "summary"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10296",
+                "items": "",
+                "label": "Pillar",
+                "system": "",
+                "text": "Pillar",
+                "type": "string",
+                "value": "customfield_10296"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10297",
+                "items": "",
+                "label": "RAG Status",
+                "system": "",
+                "text": "RAG Status",
+                "type": "string",
+                "value": "customfield_10297"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10301",
+                "items": "",
+                "label": "Blocked By",
+                "system": "",
+                "text": "Blocked By",
+                "type": "string",
+                "value": "customfield_10301"
+              }
+            ]
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10296"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Payments Modernisation\\].*",
+                        "result": {
+                          "text": "Payments Modernisation",
+                          "color": "blue",
+                          "index": 0
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Core Banking Migration\\].*",
+                        "result": {
+                          "text": "Core Banking Migration",
+                          "color": "purple",
+                          "index": 1
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Digital Channels\\].*",
+                        "result": {
+                          "text": "Digital Channels",
+                          "color": "light-blue",
+                          "index": 2
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Risk & Compliance\\].*",
+                        "result": {
+                          "text": "Risk & Compliance",
+                          "color": "dark-orange",
+                          "index": 3
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10297"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Red\\].*",
+                        "result": {
+                          "text": "Red",
+                          "color": "red",
+                          "index": 0
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Amber\\].*",
+                        "result": {
+                          "text": "Amber",
+                          "color": "orange",
+                          "index": 1
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Green\\].*",
+                        "result": {
+                          "text": "Green",
+                          "color": "green",
+                          "index": 2
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "options": {}
+      },
+      {
+        "id": 6,
+        "type": "bargauge",
+        "title": "Dependency bottleneck ranking",
+        "description": "Which blocker key is cited by the most dependents.",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 24
+        },
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND issuetype = Epic AND \"Blocked By\" is not EMPTY",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10301",
+                "items": "",
+                "label": "Blocked By",
+                "system": "",
+                "text": "Blocked By",
+                "type": "string",
+                "value": "customfield_10301"
+              }
+            ]
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "options": {
+          "reduceOptions": {
+            "values": true,
+            "calcs": [],
+            "fields": ""
+          },
+          "displayMode": "gradient",
+          "orientation": "horizontal"
+        },
+        "transformations": [
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "customfield_10301": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "key": {
+                  "aggregations": [
+                    "count"
+                  ],
+                  "operation": "aggregate"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "type": "bargauge",
+        "title": "\u26a0\ufe0f Example bottleneck -- MOCK DATA, NOT LIVE",
+        "description": "This panel queries Grafana's built-in TestData datasource, not Jira -- it is fabricated example data. The live dataset currently has no blocker cited by more than one dependent (see 'Dependency bottleneck ranking' above, correctly showing real counts of 1 for all 10 live edges). This illustrates what that panel would show once a real many-to-one bottleneck exists in the Jira data.",
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 32
+        },
+        "datasource": {
+          "type": "grafana-testdata-datasource",
+          "uid": "aep7ozkk1hjwga"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "grafana-testdata-datasource",
+              "uid": "aep7ozkk1hjwga"
+            },
+            "scenarioId": "csv_content",
+            "csvContent": "Blocked By,Dependents\nDAT-9001 (mock),4\nDAT-9002 (mock),3\nDAT-9003 (mock),2\n"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "options": {
+          "reduceOptions": {
+            "values": true,
+            "calcs": [],
+            "fields": ""
+          },
+          "displayMode": "gradient",
+          "orientation": "horizontal"
+        }
+      }
+    ]
+  },
+  "folderUid": "cfzngcse0ikg0c",
+  "overwrite": true
+}

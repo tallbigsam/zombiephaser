@@ -1,0 +1,333 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": "tpmo1-correlation",
+    "title": "Portfolio & Engineering Health by Pillar",
+    "description": "Real Jira portfolio data + mock Azure DevOps/DORA data, correlated by pillar -- the 'single dashboard regardless of source' use case from the TPMO1 doc.",
+    "tags": [
+      "tpmo1",
+      "correlation",
+      "dora",
+      "mock"
+    ],
+    "timezone": "browser",
+    "schemaVersion": 39,
+    "time": {
+      "from": "now-90d",
+      "to": "now+30d"
+    },
+    "panels": [
+      {
+        "id": 2,
+        "type": "text",
+        "title": "About this dashboard",
+        "gridPos": {
+          "h": 7,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "options": {
+          "mode": "markdown",
+          "content": "This is the \"single dashboard regardless of source\" the TPMO1 doc asks about, made concrete: **real Jira portfolio data** (left/top table, live) next to **mock Azure DevOps engineering/DORA data** (right/bottom table, via TestData -- see the companion Azure DevOps Engineering Metrics (Mock) dashboard) -- correlated on the one dimension both sides share: **Pillar**.\n\nNo cross-datasource join is used -- that class of transform proved unreliable even within a single datasource earlier in this build, so as with the Dependency dashboard, the viewer cross-references the two tables by eye: find a pillar in both and compare.\n\n**Caveat:** the mock engineering health tiers were generated independently of the live Jira RAG data (Assistant never saw it) -- any agreement or contradiction between the two tables below is coincidental, not engineered. That's still the right way to read this dashboard: it demonstrates the diagnostic *pattern* -- does a pillar's self-reported portfolio status agree with its engineering delivery signals, or reveal a blind spot -- not a real finding about this bank."
+        }
+      },
+      {
+        "id": 3,
+        "type": "table",
+        "title": "Portfolio RAG by pillar (Jira -- LIVE)",
+        "description": "",
+        "gridPos": {
+          "h": 13,
+          "w": 12,
+          "x": 0,
+          "y": 7
+        },
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "queryType": "",
+            "jql": "project = DAT AND issuetype = Epic",
+            "maxDataPoints": 200,
+            "fields": [
+              {
+                "custom": "",
+                "id": "customfield_10296",
+                "items": "",
+                "label": "Pillar",
+                "system": "",
+                "text": "Pillar",
+                "type": "string",
+                "value": "customfield_10296"
+              },
+              {
+                "custom": "",
+                "id": "customfield_10297",
+                "items": "",
+                "label": "RAG Status",
+                "system": "",
+                "text": "RAG Status",
+                "type": "string",
+                "value": "customfield_10297"
+              },
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              }
+            ]
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10296"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Payments Modernisation\\].*",
+                        "result": {
+                          "text": "Payments Modernisation",
+                          "color": "blue",
+                          "index": 0
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Core Banking Migration\\].*",
+                        "result": {
+                          "text": "Core Banking Migration",
+                          "color": "purple",
+                          "index": 1
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Digital Channels\\].*",
+                        "result": {
+                          "text": "Digital Channels",
+                          "color": "light-blue",
+                          "index": 2
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Risk & Compliance\\].*",
+                        "result": {
+                          "text": "Risk & Compliance",
+                          "color": "dark-orange",
+                          "index": 3
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10297"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Red\\].*",
+                        "result": {
+                          "text": "Red",
+                          "color": "red",
+                          "index": 0
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Amber\\].*",
+                        "result": {
+                          "text": "Amber",
+                          "color": "orange",
+                          "index": 1
+                        }
+                      }
+                    },
+                    {
+                      "type": "regex",
+                      "options": {
+                        "pattern": ".*value:Green\\].*",
+                        "result": {
+                          "text": "Green",
+                          "color": "green",
+                          "index": 2
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "options": {},
+        "transformations": [
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "customfield_10296": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "customfield_10297": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "key": {
+                  "aggregations": [
+                    "count"
+                  ],
+                  "operation": "aggregate"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "type": "table",
+        "title": "Engineering & DORA health by pillar (Mock)",
+        "description": "Same mock data model as the Azure DevOps Engineering Metrics (Mock) dashboard, condensed. Not live.",
+        "gridPos": {
+          "h": 13,
+          "w": 12,
+          "x": 12,
+          "y": 7
+        },
+        "datasource": {
+          "type": "grafana-testdata-datasource",
+          "uid": "aep7ozkk1hjwga"
+        },
+        "targets": [
+          {
+            "refId": "A",
+            "datasource": {
+              "type": "grafana-testdata-datasource",
+              "uid": "aep7ozkk1hjwga"
+            },
+            "scenarioId": "csv_content",
+            "csvContent": "Project,Build Success Rate %,Deploy Frequency,Change Failure Rate,MTTR,Health\nPayments Modernisation,96,5.2,4,0.8,Healthy\nCore Banking Migration,86,2.8,12,4.0,Stable\nDigital Channels,68,1.5,22,14.0,At Risk\nRisk & Compliance,45,0.6,38,48.0,Critical\n"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Health"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "type": "value",
+                      "options": {
+                        "Healthy": {
+                          "text": "Healthy",
+                          "color": "green",
+                          "index": 0
+                        }
+                      }
+                    },
+                    {
+                      "type": "value",
+                      "options": {
+                        "Stable": {
+                          "text": "Stable",
+                          "color": "blue",
+                          "index": 1
+                        }
+                      }
+                    },
+                    {
+                      "type": "value",
+                      "options": {
+                        "At Risk": {
+                          "text": "At Risk",
+                          "color": "orange",
+                          "index": 2
+                        }
+                      }
+                    },
+                    {
+                      "type": "value",
+                      "options": {
+                        "Critical": {
+                          "text": "Critical",
+                          "color": "red",
+                          "index": 3
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "options": {}
+      },
+      {
+        "id": 5,
+        "type": "text",
+        "title": "What to look for",
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 20
+        },
+        "options": {
+          "mode": "markdown",
+          "content": "Reading the two tables above together, per pillar (using this dataset's actual live numbers at the time this was built):\n\n- **Payments Modernisation**: portfolio shows the *heaviest* Red flagging (4 Red Epics) of any pillar, yet its mock engineering data is the *healthiest* (96% build success, lowest change failure rate). Worth checking whether that Red status reflects a business/vendor dependency risk rather than a delivery/engineering one -- which matches this pillar's actual blocked Epic narrative (a vendor certification delay, not a broken pipeline).\n- **Digital Channels** and **Risk & Compliance**: portfolio shows few or no Red Epics, but mock engineering data rates them 'At Risk' / 'Critical' -- exactly the kind of blind spot a Jira-only view wouldn't surface, and the reason to look at both sources together.\n- **Core Banking Migration**: the one pillar where the two views broadly agree (mostly Green portfolio, 'Stable' engineering) -- a sanity-check case, not a risk case."
+        }
+      }
+    ]
+  },
+  "folderUid": "cfzngcse0ikg0c",
+  "overwrite": true
+}

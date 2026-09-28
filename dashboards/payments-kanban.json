@@ -1,0 +1,2429 @@
+{
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "Steering committee portfolio view of the Payments Platforms delivery landscape: card-based Kanban grouped by delivery stage, colour-coded by platform/domain, with target date, sizing and impact metadata per initiative.",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": null,
+    "liveNow": false,
+    "panels": [
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 14,
+        "title": "Overview",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": 0
+                }
+              ]
+            },
+            "unit": "short"
+          }
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 0,
+          "y": 1
+        },
+        "id": 7,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "count"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "13.3.0-35570731645",
+        "targets": [
+          {
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              }
+            ],
+            "jql": "project = $project_key AND status IS NOT EMPTY",
+            "maxDataPoints": 200,
+            "queryType": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Total issues",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "orange",
+                  "value": 10
+                },
+                {
+                  "color": "red",
+                  "value": 20
+                }
+              ]
+            },
+            "unit": "short"
+          }
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 6,
+          "y": 1
+        },
+        "id": 6,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "count"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "13.3.0-35570731645",
+        "targets": [
+          {
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              }
+            ],
+            "jql": "project = $project_key AND status = \"To Do\"",
+            "maxDataPoints": 200,
+            "queryType": "",
+            "refId": "A"
+          }
+        ],
+        "title": "To-Do",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "orange",
+                  "value": 15
+                },
+                {
+                  "color": "red",
+                  "value": 25
+                }
+              ]
+            },
+            "unit": "short"
+          }
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 12,
+          "y": 1
+        },
+        "id": 5,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "count"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "13.3.0-35570731645",
+        "targets": [
+          {
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              }
+            ],
+            "jql": "project = $project_key AND status = \"In Progress\"",
+            "maxDataPoints": 200,
+            "queryType": "",
+            "refId": "A"
+          }
+        ],
+        "title": "In Delivery",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "orange",
+                  "value": 10
+                },
+                {
+                  "color": "green",
+                  "value": 20
+                }
+              ]
+            },
+            "unit": "short"
+          }
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 18,
+          "y": 1
+        },
+        "id": 4,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [
+              "count"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "13.3.0-35570731645",
+        "targets": [
+          {
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              }
+            ],
+            "jql": "project = $project_key AND status = \"Done\"",
+            "maxDataPoints": 200,
+            "queryType": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Done",
+        "type": "stat"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 6
+        },
+        "id": 15,
+        "title": "Kanban Board",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "filterable": true,
+              "footer": {
+                "reducers": []
+              },
+              "inspect": false
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "key"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Key"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "summary"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Initiative"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "issuetype"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Type"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "pattern": ".*name:Epic.*",
+                        "result": {
+                          "index": 0,
+                          "text": "\ud83d\udfe3 Epic"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:(\\S+).*",
+                        "result": {
+                          "index": 1,
+                          "text": "$1"
+                        }
+                      },
+                      "type": "regex"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "priority"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Impact"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 110
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "type": "color-background"
+                  }
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "pattern": ".*name:Highest.*",
+                        "result": {
+                          "color": "red",
+                          "index": 0,
+                          "text": "Highest"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:High.*",
+                        "result": {
+                          "color": "orange",
+                          "index": 1,
+                          "text": "High"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:Medium.*",
+                        "result": {
+                          "color": "blue",
+                          "index": 2,
+                          "text": "Medium"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:Low.*",
+                        "result": {
+                          "color": "green",
+                          "index": 3,
+                          "text": "Low"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:Lowest.*",
+                        "result": {
+                          "color": "dark-green",
+                          "index": 4,
+                          "text": "Lowest"
+                        }
+                      },
+                      "type": "regex"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "duedate"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Target Date"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 110
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10296.value",
+                "scope": "series"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Platform / Domain"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 150
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "applyToRow": true,
+                    "mode": "basic",
+                    "type": "color-background"
+                  }
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "match": "empty",
+                        "result": {
+                          "color": "#6c757d",
+                          "text": "Unassigned"
+                        }
+                      },
+                      "type": "special"
+                    },
+                    {
+                      "options": {
+                        "Core Banking Migration": {
+                          "color": "grey",
+                          "index": 1
+                        },
+                        "Digital Channels": {
+                          "color": "teal",
+                          "index": 2
+                        },
+                        "Payments Modernisation": {
+                          "color": "blue",
+                          "index": 0
+                        },
+                        "Risk & Compliance": {
+                          "color": "purple",
+                          "index": 3
+                        }
+                      },
+                      "type": "value"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10016"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Size (SP)"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "1": {
+                          "index": 0,
+                          "text": "S"
+                        },
+                        "2": {
+                          "index": 1,
+                          "text": "M"
+                        },
+                        "3": {
+                          "index": 2,
+                          "text": "L"
+                        },
+                        "4": {
+                          "index": 3,
+                          "text": "XL"
+                        },
+                        "5": {
+                          "index": 4,
+                          "text": "XXL"
+                        }
+                      },
+                      "type": "value"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 14,
+          "w": 8,
+          "x": 0,
+          "y": 7
+        },
+        "id": 9,
+        "options": {
+          "cellHeight": "lg",
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": false,
+              "displayName": "Platform / Domain"
+            }
+          ],
+          "zebraStriping": true
+        },
+        "pluginVersion": "13.3.0-35570731645",
+        "targets": [
+          {
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "summary",
+                "items": "",
+                "label": "Summary",
+                "system": "summary",
+                "text": "Summary",
+                "type": "string",
+                "value": "summary"
+              },
+              {
+                "custom": "",
+                "id": "issuetype",
+                "items": "",
+                "label": "Issue Type",
+                "system": "issuetype",
+                "text": "Issue Type",
+                "type": "string",
+                "value": "issuetype"
+              },
+              {
+                "custom": "",
+                "id": "priority",
+                "items": "",
+                "label": "Priority",
+                "system": "priority",
+                "text": "Priority",
+                "type": "string",
+                "value": "priority"
+              },
+              {
+                "custom": "",
+                "id": "duedate",
+                "items": "",
+                "label": "Due date",
+                "system": "duedate",
+                "text": "Due date",
+                "type": "date",
+                "value": "duedate"
+              },
+              {
+                "custom": "com.pyxis.greenhopper.jira:jsw-story-points",
+                "id": "customfield_10016",
+                "items": "",
+                "label": "Story point estimate",
+                "system": "",
+                "text": "Story point estimate",
+                "type": "number",
+                "value": "customfield_10016"
+              },
+              {
+                "custom": "com.atlassian.jira.plugin.system.customfieldtypes:select",
+                "id": "customfield_10296",
+                "items": "",
+                "label": "Pillar",
+                "system": "",
+                "text": "Pillar",
+                "type": "select",
+                "value": "customfield_10296.value"
+              }
+            ],
+            "jql": "project = $project_key AND status = \"To Do\" ORDER BY duedate ASC",
+            "maxDataPoints": 200,
+            "queryType": "",
+            "refId": "A"
+          }
+        ],
+        "title": "To-Do",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "key": true
+              }
+            }
+          },
+          {
+            "disabled": false,
+            "id": "filterByValue",
+            "options": {
+              "filters": [
+                {
+                  "config": {
+                    "id": "equal",
+                    "options": {
+                      "value": ""
+                    }
+                  },
+                  "fieldName": "customfield_10296.value"
+                }
+              ],
+              "match": "any",
+              "type": "exclude"
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "filterable": true,
+              "footer": {
+                "reducers": []
+              },
+              "inspect": false
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "key"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Key"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "summary"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Initiative"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "issuetype"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Type"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "pattern": ".*name:Epic.*",
+                        "result": {
+                          "index": 0,
+                          "text": "\ud83d\udfe3 Epic"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:(\\S+).*",
+                        "result": {
+                          "index": 1,
+                          "text": "$1"
+                        }
+                      },
+                      "type": "regex"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "priority"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Impact"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 110
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "type": "color-background"
+                  }
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "pattern": ".*name:Highest.*",
+                        "result": {
+                          "color": "red",
+                          "index": 0,
+                          "text": "Highest"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:High.*",
+                        "result": {
+                          "color": "orange",
+                          "index": 1,
+                          "text": "High"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:Medium.*",
+                        "result": {
+                          "color": "blue",
+                          "index": 2,
+                          "text": "Medium"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:Low.*",
+                        "result": {
+                          "color": "green",
+                          "index": 3,
+                          "text": "Low"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:Lowest.*",
+                        "result": {
+                          "color": "dark-green",
+                          "index": 4,
+                          "text": "Lowest"
+                        }
+                      },
+                      "type": "regex"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "duedate"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Target Date"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 110
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10296.value",
+                "scope": "series"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Platform / Domain"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 150
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "applyToRow": true,
+                    "mode": "basic",
+                    "type": "color-background"
+                  }
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "match": "empty",
+                        "result": {
+                          "color": "#6c757d",
+                          "text": "Unassigned"
+                        }
+                      },
+                      "type": "special"
+                    },
+                    {
+                      "options": {
+                        "Core Banking Migration": {
+                          "color": "grey",
+                          "index": 1
+                        },
+                        "Digital Channels": {
+                          "color": "teal",
+                          "index": 2
+                        },
+                        "Payments Modernisation": {
+                          "color": "blue",
+                          "index": 0
+                        },
+                        "Risk & Compliance": {
+                          "color": "purple",
+                          "index": 3
+                        }
+                      },
+                      "type": "value"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10016"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Size (SP)"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "1": {
+                          "index": 0,
+                          "text": "S"
+                        },
+                        "2": {
+                          "index": 1,
+                          "text": "M"
+                        },
+                        "3": {
+                          "index": 2,
+                          "text": "L"
+                        },
+                        "4": {
+                          "index": 3,
+                          "text": "XL"
+                        },
+                        "5": {
+                          "index": 4,
+                          "text": "XXL"
+                        }
+                      },
+                      "type": "value"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 14,
+          "w": 8,
+          "x": 8,
+          "y": 7
+        },
+        "id": 10,
+        "options": {
+          "cellHeight": "lg",
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "Platform / Domain"
+            }
+          ],
+          "zebraStriping": true
+        },
+        "pluginVersion": "13.3.0-35570731645",
+        "targets": [
+          {
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "summary",
+                "items": "",
+                "label": "Summary",
+                "system": "summary",
+                "text": "Summary",
+                "type": "string",
+                "value": "summary"
+              },
+              {
+                "custom": "",
+                "id": "issuetype",
+                "items": "",
+                "label": "Issue Type",
+                "system": "issuetype",
+                "text": "Issue Type",
+                "type": "string",
+                "value": "issuetype"
+              },
+              {
+                "custom": "",
+                "id": "priority",
+                "items": "",
+                "label": "Priority",
+                "system": "priority",
+                "text": "Priority",
+                "type": "string",
+                "value": "priority"
+              },
+              {
+                "custom": "",
+                "id": "duedate",
+                "items": "",
+                "label": "Due date",
+                "system": "duedate",
+                "text": "Due date",
+                "type": "date",
+                "value": "duedate"
+              },
+              {
+                "custom": "com.pyxis.greenhopper.jira:jsw-story-points",
+                "id": "customfield_10016",
+                "items": "",
+                "label": "Story point estimate",
+                "system": "",
+                "text": "Story point estimate",
+                "type": "number",
+                "value": "customfield_10016"
+              },
+              {
+                "custom": "com.atlassian.jira.plugin.system.customfieldtypes:select",
+                "id": "customfield_10296",
+                "items": "",
+                "label": "Pillar",
+                "system": "",
+                "text": "Pillar",
+                "type": "select",
+                "value": "customfield_10296.value"
+              }
+            ],
+            "jql": "project = $project_key AND status = \"In Progress\" ORDER BY duedate ASC",
+            "maxDataPoints": 200,
+            "queryType": "",
+            "refId": "A"
+          }
+        ],
+        "title": "In Delivery",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "key": true
+              }
+            }
+          },
+          {
+            "id": "filterByValue",
+            "options": {
+              "filters": [
+                {
+                  "config": {
+                    "id": "equal",
+                    "options": {
+                      "value": ""
+                    }
+                  },
+                  "fieldName": "customfield_10296.value"
+                }
+              ],
+              "match": "any",
+              "type": "exclude"
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "filterable": true,
+              "footer": {
+                "reducers": []
+              },
+              "inspect": false
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "key"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Key"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "summary"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Initiative"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "issuetype"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Type"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "pattern": ".*name:Epic.*",
+                        "result": {
+                          "index": 0,
+                          "text": "\ud83d\udfe3 Epic"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:(\\S+).*",
+                        "result": {
+                          "index": 1,
+                          "text": "$1"
+                        }
+                      },
+                      "type": "regex"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "priority"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Impact"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 110
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "type": "color-background"
+                  }
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "pattern": ".*name:Highest.*",
+                        "result": {
+                          "color": "red",
+                          "index": 0,
+                          "text": "Highest"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:High.*",
+                        "result": {
+                          "color": "orange",
+                          "index": 1,
+                          "text": "High"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:Medium.*",
+                        "result": {
+                          "color": "blue",
+                          "index": 2,
+                          "text": "Medium"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:Low.*",
+                        "result": {
+                          "color": "green",
+                          "index": 3,
+                          "text": "Low"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:Lowest.*",
+                        "result": {
+                          "color": "dark-green",
+                          "index": 4,
+                          "text": "Lowest"
+                        }
+                      },
+                      "type": "regex"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "duedate"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Target Date"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 110
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10296.value",
+                "scope": "series"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Platform / Domain"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 150
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "applyToRow": true,
+                    "mode": "basic",
+                    "type": "color-background"
+                  }
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "match": "empty",
+                        "result": {
+                          "color": "#6c757d",
+                          "text": "Unassigned"
+                        }
+                      },
+                      "type": "special"
+                    },
+                    {
+                      "options": {
+                        "Core Banking Migration": {
+                          "color": "grey",
+                          "index": 1
+                        },
+                        "Digital Channels": {
+                          "color": "teal",
+                          "index": 2
+                        },
+                        "Payments Modernisation": {
+                          "color": "blue",
+                          "index": 0
+                        },
+                        "Risk & Compliance": {
+                          "color": "purple",
+                          "index": 3
+                        }
+                      },
+                      "type": "value"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10016"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Size (SP)"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "1": {
+                          "index": 0,
+                          "text": "S"
+                        },
+                        "2": {
+                          "index": 1,
+                          "text": "M"
+                        },
+                        "3": {
+                          "index": 2,
+                          "text": "L"
+                        },
+                        "4": {
+                          "index": 3,
+                          "text": "XL"
+                        },
+                        "5": {
+                          "index": 4,
+                          "text": "XXL"
+                        }
+                      },
+                      "type": "value"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 14,
+          "w": 8,
+          "x": 16,
+          "y": 7
+        },
+        "id": 11,
+        "options": {
+          "cellHeight": "lg",
+          "showHeader": true,
+          "sortBy": [],
+          "zebraStriping": true
+        },
+        "pluginVersion": "13.3.0-35570731645",
+        "targets": [
+          {
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "summary",
+                "items": "",
+                "label": "Summary",
+                "system": "summary",
+                "text": "Summary",
+                "type": "string",
+                "value": "summary"
+              },
+              {
+                "custom": "",
+                "id": "issuetype",
+                "items": "",
+                "label": "Issue Type",
+                "system": "issuetype",
+                "text": "Issue Type",
+                "type": "string",
+                "value": "issuetype"
+              },
+              {
+                "custom": "",
+                "id": "priority",
+                "items": "",
+                "label": "Priority",
+                "system": "priority",
+                "text": "Priority",
+                "type": "string",
+                "value": "priority"
+              },
+              {
+                "custom": "",
+                "id": "duedate",
+                "items": "",
+                "label": "Due date",
+                "system": "duedate",
+                "text": "Due date",
+                "type": "date",
+                "value": "duedate"
+              },
+              {
+                "custom": "com.pyxis.greenhopper.jira:jsw-story-points",
+                "id": "customfield_10016",
+                "items": "",
+                "label": "Story point estimate",
+                "system": "",
+                "text": "Story point estimate",
+                "type": "number",
+                "value": "customfield_10016"
+              },
+              {
+                "custom": "com.atlassian.jira.plugin.system.customfieldtypes:select",
+                "id": "customfield_10296",
+                "items": "",
+                "label": "Pillar",
+                "system": "",
+                "text": "Pillar",
+                "type": "select",
+                "value": "customfield_10296.value"
+              }
+            ],
+            "jql": "project = $project_key AND status = \"Done\" ORDER BY updated DESC",
+            "maxDataPoints": 200,
+            "queryType": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Done",
+        "transformations": [
+          {
+            "disabled": false,
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "key": true
+              }
+            }
+          },
+          {
+            "disabled": false,
+            "id": "filterByValue",
+            "options": {
+              "filters": [
+                {
+                  "config": {
+                    "id": "equal",
+                    "options": {
+                      "value": ""
+                    }
+                  },
+                  "fieldName": "customfield_10296.value"
+                }
+              ],
+              "match": "any",
+              "type": "exclude"
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 21
+        },
+        "id": 16,
+        "title": "Breakdown",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "short"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byFrameRefID",
+                "options": "A"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Story"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byFrameRefID",
+                "options": "B"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Bug"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byFrameRefID",
+                "options": "C"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Epic"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byFrameRefID",
+                "options": "D"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Task"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 0,
+          "y": 22
+        },
+        "id": 8,
+        "options": {
+          "displayMode": "gradient",
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "maxVizHeight": 300,
+          "minVizHeight": 16,
+          "minVizWidth": 8,
+          "namePlacement": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "count"
+            ],
+            "fields": "/.*/",
+            "values": false
+          },
+          "showUnfilled": true,
+          "sizing": "auto",
+          "valueMode": "color"
+        },
+        "pluginVersion": "13.3.0-35570731645",
+        "targets": [
+          {
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              }
+            ],
+            "jql": "project = $project_key AND status IS NOT EMPTY AND issuetype = Story",
+            "maxDataPoints": 200,
+            "queryType": "",
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              }
+            ],
+            "jql": "project = $project_key AND status IS NOT EMPTY AND issuetype = Bug",
+            "maxDataPoints": 200,
+            "queryType": "",
+            "refId": "B"
+          },
+          {
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              }
+            ],
+            "jql": "project = $project_key AND status IS NOT EMPTY AND issuetype = Epic",
+            "maxDataPoints": 200,
+            "queryType": "",
+            "refId": "C"
+          },
+          {
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              }
+            ],
+            "jql": "project = $project_key AND status IS NOT EMPTY AND issuetype = Task",
+            "maxDataPoints": 200,
+            "queryType": "",
+            "refId": "D"
+          }
+        ],
+        "title": "Issues by type",
+        "type": "bargauge"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 31
+        },
+        "id": 17,
+        "title": "Tasks",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "grafana-jira-datasource",
+          "uid": "afzngd12kho1sc"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "filterable": true,
+              "footer": {
+                "reducers": []
+              },
+              "inspect": false
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "key"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Key"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "summary"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Initiative"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "issuetype"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Type"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "pattern": ".*name:Epic.*",
+                        "result": {
+                          "index": 0,
+                          "text": "\ud83d\udfe3 Epic"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:(\\S+).*",
+                        "result": {
+                          "index": 1,
+                          "text": "$1"
+                        }
+                      },
+                      "type": "regex"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "priority"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Impact"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 110
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "type": "color-background"
+                  }
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "pattern": ".*name:Highest.*",
+                        "result": {
+                          "color": "red",
+                          "index": 0,
+                          "text": "Highest"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:High.*",
+                        "result": {
+                          "color": "orange",
+                          "index": 1,
+                          "text": "High"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:Medium.*",
+                        "result": {
+                          "color": "blue",
+                          "index": 2,
+                          "text": "Medium"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:Low.*",
+                        "result": {
+                          "color": "green",
+                          "index": 3,
+                          "text": "Low"
+                        }
+                      },
+                      "type": "regex"
+                    },
+                    {
+                      "options": {
+                        "pattern": ".*name:Lowest.*",
+                        "result": {
+                          "color": "dark-green",
+                          "index": 4,
+                          "text": "Lowest"
+                        }
+                      },
+                      "type": "regex"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "duedate"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Target Date"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 110
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10296.value",
+                "scope": "series"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Platform / Domain"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 150
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "applyToRow": true,
+                    "mode": "basic",
+                    "type": "color-background"
+                  }
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "match": "empty",
+                        "result": {
+                          "color": "#6c757d",
+                          "text": "Unassigned"
+                        }
+                      },
+                      "type": "special"
+                    },
+                    {
+                      "options": {
+                        "Core Banking Migration": {
+                          "color": "grey",
+                          "index": 1
+                        },
+                        "Digital Channels": {
+                          "color": "teal",
+                          "index": 2
+                        },
+                        "Payments Modernisation": {
+                          "color": "blue",
+                          "index": 0
+                        },
+                        "Risk & Compliance": {
+                          "color": "purple",
+                          "index": 3
+                        }
+                      },
+                      "type": "value"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "customfield_10016"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Size (SP)"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                },
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "1": {
+                          "index": 0,
+                          "text": "S"
+                        },
+                        "2": {
+                          "index": 1,
+                          "text": "M"
+                        },
+                        "3": {
+                          "index": 2,
+                          "text": "L"
+                        },
+                        "4": {
+                          "index": 3,
+                          "text": "XL"
+                        },
+                        "5": {
+                          "index": 4,
+                          "text": "XXL"
+                        }
+                      },
+                      "type": "value"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 0,
+          "y": 32
+        },
+        "id": 13,
+        "options": {
+          "cellHeight": "lg",
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": false,
+              "displayName": "Platform / Domain"
+            }
+          ],
+          "zebraStriping": true
+        },
+        "pluginVersion": "13.3.0-35570731645",
+        "targets": [
+          {
+            "datasource": {
+              "type": "grafana-jira-datasource",
+              "uid": "afzngd12kho1sc"
+            },
+            "domain": "issues",
+            "fields": [
+              {
+                "custom": "",
+                "id": "key",
+                "items": "",
+                "label": "Key",
+                "system": "",
+                "text": "Key",
+                "type": "string",
+                "value": "key"
+              },
+              {
+                "custom": "",
+                "id": "summary",
+                "items": "",
+                "label": "Summary",
+                "system": "summary",
+                "text": "Summary",
+                "type": "string",
+                "value": "summary"
+              },
+              {
+                "custom": "",
+                "id": "issuetype",
+                "items": "",
+                "label": "Issue Type",
+                "system": "issuetype",
+                "text": "Issue Type",
+                "type": "string",
+                "value": "issuetype"
+              },
+              {
+                "custom": "",
+                "id": "priority",
+                "items": "",
+                "label": "Priority",
+                "system": "priority",
+                "text": "Priority",
+                "type": "string",
+                "value": "priority"
+              },
+              {
+                "custom": "",
+                "id": "duedate",
+                "items": "",
+                "label": "Due date",
+                "system": "duedate",
+                "text": "Due date",
+                "type": "date",
+                "value": "duedate"
+              },
+              {
+                "custom": "com.pyxis.greenhopper.jira:jsw-story-points",
+                "id": "customfield_10016",
+                "items": "",
+                "label": "Story point estimate",
+                "system": "",
+                "text": "Story point estimate",
+                "type": "number",
+                "value": "customfield_10016"
+              },
+              {
+                "custom": "com.atlassian.jira.plugin.system.customfieldtypes:select",
+                "id": "customfield_10296",
+                "items": "",
+                "label": "Pillar",
+                "system": "",
+                "text": "Pillar",
+                "type": "select",
+                "value": "customfield_10296.value"
+              }
+            ],
+            "jql": "project = $project_key AND status = \"To Do\" and type = \"Task\" ORDER BY duedate ASC",
+            "maxDataPoints": 200,
+            "queryType": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Unestimated Tasks",
+        "transformations": [
+          {
+            "disabled": false,
+            "id": "filterByValue",
+            "options": {
+              "filters": [
+                {
+                  "config": {
+                    "id": "isNull",
+                    "options": {}
+                  },
+                  "fieldName": "Story point estimate"
+                }
+              ],
+              "match": "any",
+              "type": "include"
+            }
+          }
+        ],
+        "type": "table"
+      }
+    ],
+    "preload": false,
+    "refresh": "",
+    "schemaVersion": 42,
+    "tags": [
+      "kanban",
+      "jira",
+      "tpmo1",
+      "portfolio",
+      "steering-committee"
+    ],
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
+    "timezone": "browser",
+    "title": "Payments Platforms' KANBAN",
+    "uid": "samf78d",
+    "version": 1,
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "DAT",
+            "value": "DAT"
+          },
+          "hide": 0,
+          "label": "Jira project",
+          "name": "project_key",
+          "options": [
+            {
+              "selected": true,
+              "text": "DAT",
+              "value": "DAT"
+            }
+          ],
+          "query": "",
+          "skipUrlSync": false,
+          "type": "textbox"
+        }
+      ]
+    }
+  },
+  "folderUid": "cfzngcse0ikg0c",
+  "overwrite": true
+}
